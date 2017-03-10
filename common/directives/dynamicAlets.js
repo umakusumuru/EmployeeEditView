@@ -1,5 +1,13 @@
-editviewapp.factory('alert', ['$mdDialog', '$uibModal', '$timeout',
-    function($mdDialog, uibModal, timeout) {
+(function() {
+    'use strict';
+
+    angular
+        .module('KaakateeyaEmpEdit')
+        .factory('alert', factory)
+
+    factory.$inject = ['$mdDialog', '$uibModal', '$timeout'];
+
+    function factory($mdDialog, uibModal, timeout) {
         var modalinstance, forgetpassword;
 
         return {
@@ -81,4 +89,4 @@ editviewapp.factory('alert', ['$mdDialog', '$uibModal', '$timeout',
 
         };
     }
-]);
+})();

@@ -1,31 +1,38 @@
-editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory', '$mdDialog', function(SelectBindService, commonFactory, mdDialog) {
-    return {
-        scope: {
-            dmobile: '=',
-            strmobile: '=',
-            dalternative: '=',
-            stralternative: '=',
-            dland: '=',
-            strareacode: '=',
-            strland: '=',
-            strmail: '=',
-            emailhide: '='
-        },
-        templateUrl: 'common/templates/contacttemplate.html',
-        link: function(scope, element, attr) {
+(function() {
+    'use strict';
+
+    angular
+        .module('KaakateeyaEmpEdit')
+        .directive('contactDirective', directive);
+
+    directive.$inject = ['SelectBindService', 'commonFactory', '$mdDialog'];
+
+    function directive(SelectBindService, commonFactory, mdDialog) {
+
+        var directive = {
+            link: link,
+            restrict: 'EA',
+            scope: {
+                dmobile: '=',
+                strmobile: '=',
+                dalternative: '=',
+                stralternative: '=',
+                dland: '=',
+                strareacode: '=',
+                strland: '=',
+                strmail: '=',
+                emailhide: '='
+            },
+            templateUrl: 'common/templates/contacttemplate.html'
+        };
+        return directive;
+
+        function link(scope, element, attrs) {
 
             scope.amob = (scope.stralternative !== null && scope.stralternative !== '' && scope.stralternative !== undefined) ? true : false;
             scope.land = (scope.strareacode !== null && scope.strareacode !== '' && scope.strareacode !== undefined) ? true : false;
             scope.mail = (scope.strmail !== null && scope.strmail !== '' && scope.strmail !== undefined) ? true : false;
             scope.pmob = (scope.strmobile !== null && scope.strmobile !== '' && scope.strmobile !== undefined) ? true : false;
-
-            SelectBindService.countryCodeselect().then(function(response) {
-                scope.countryCodeArr = [];
-                scope.countryCodeArr.push({ "label": "--select--", "title": "--select--", "value": 0 });
-                _.each(response.data, function(item) {
-                    scope.countryCodeArr.push({ "label": item.Name, "title": item.Name, "value": item.ID });
-                });
-            });
 
             scope.showhidemob = function(ev, type) {
 
@@ -89,8 +96,7 @@ editviewapp.directive('contactDirective', ['SelectBindService', 'commonFactory',
 
                 });
             };
-
-
         }
-    };
-}]);
+    }
+
+})();

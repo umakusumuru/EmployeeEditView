@@ -5,17 +5,14 @@
         <div class="pop_controls_right">
 
             <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add Mobile Number" tabindex="6" ng-click="showhidemob($event,'mob');" href=javascript:void(0);>
-                <!--<span class="glyphicon glyphicon-phone"></span>-->
                 <ng-md-icon icon="smartphone" style="fill:#337ab7" size="20"></ng-md-icon>
             </a>
 
             <a data-toggle="tooltip" style="padding-right:20%;" data-original-title="Add  Land Number" tabindex="7" ng-click="showhidemob($event,'land');" href=javascript:void(0);>
-                <!--<span class="glyphicon glyphicon-phone-alt"></span>-->
                 <ng-md-icon icon="call" style="fill:#337ab7" size="20"></ng-md-icon>
             </a>
 
             <a data-toggle="tooltip" ng-show="emailhide" data-original-title="Add  Email ID" tabindex="8" ng-click="showhidemob($event,'mail');" href=javascript:void(0);>
-                <!--<span class="glyphicon glyphicon-envelope"></span>-->
                 <ng-md-icon icon="mail" style="fill:#337ab7" size="20"></ng-md-icon>
             </a>
         </div>
@@ -25,7 +22,7 @@
         <div>
             <label for="lblMobile" class="pop_label_left">Mobile #  </label>
             <div class="pop_controls_right select-box-my select-box-my-double">
-                <select multiselectdropdown ng-model="dmobile" ng-options="item.value as item.label for item in countryCodeArr"></select>
+                <select multiselectdropdown ng-model="dmobile" typeofdata="'countryCode'"></select>
                 <input type=text ng-model="strmobile" style="float:right;" class="form-control" maxlength="10" tabindex="10" />
             </div>
         </div>
@@ -34,7 +31,7 @@
         <div>
             <label for="lblMobilefather" class="pop_label_left">Altenate Number</label>
             <div class="pop_controls_right select-box-my select-box-my-double">
-                <select multiselectdropdown ng-model="dalternative" ng-options="item.value as item.label for item in countryCodeArr"></select>
+                <select multiselectdropdown ng-model="dalternative" typeofdata="'countryCode'"></select>
                 <input type=text class="form-control" style="float:right;" ng-model="stralternative" maxlength="10" tabindex="12" />
             </div>
         </div>
@@ -43,7 +40,7 @@
         <div>
             <label for="lblLandLine" class="pop_label_left">Land line #  </label>
             <div class="pop_controls_right select-box-my select-box-my-trible">
-                <select multiselectdropdown ng-model="dland" ng-options="item.value as item.label for item in countryCodeArr"></select>
+                <select multiselectdropdown ng-model="dland" typeofdata="'countryCode'"></select>
                 <input type=text ng-model="strareacode" maxlength="4" tabindex="14" />
                 <input type=text ng-model="strland" maxlength="8" tabindex="15" />
             </div>
