@@ -97,6 +97,10 @@ module.exports = function(grunt) {
                 },
             },
         },
+        // dirs: {
+        //     src: 'app/**',
+        //     dest: 'app/<%= pkg.name %>/<%= pkg.version %>',
+        // },
         concat: {
             options: {
                 stripBanners: true,
@@ -111,12 +115,21 @@ module.exports = function(grunt) {
             },
             js: { //target
                 src: ['app/**/*.js'],
-                dest: 'dist/src/main.js'
-            },
-            css: {
-                src: css,
-                dest: 'dist/src/main.css'
+                dest: 'app/src/main.js',
+                filter: function(dest) { // `dest`, in this instance, is the filepath of each matched `src`
+                    // var cwd = this.cwd, // Configures variables (these are documented for your convenience only)
+                    //     src = dest.replace(new RegExp('^' + cwd), '');
+                    // dest = grunt.task.current.data.files[0].dest;
+                    // return (!grunt.file.exists(dest + src)); // Copies `src` files ONLY if their destinations are unoccupied
+                    console.log(dest);
+                    dest: 'app/src/main.js'
+                }
+
             }
+            // css: {
+            //     src: css,
+            //     dest: 'dist/src/main.css'
+            // }
         },
         copy: {
             images: {

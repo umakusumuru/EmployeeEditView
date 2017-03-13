@@ -9,10 +9,19 @@
 
         model.init = function() {
             baseService.personalDetails(CustID).then(function(response) {
+                debugger;
                 model.PersonalObj = response.data;
                 model.imgsrc = authSvc.getprofilepic();
 
+                console.log(response.data);
+
+                if (model.PersonalObj != null && model.PersonalObj != undefined) {
+                    baseService.nodatastatus(model.PersonalObj.ProfileID).then(function(res) {
+                        model.rev = res.data;
+                    });
+                }
             });
+
             model.unreviewedLinks();
             return model;
         };

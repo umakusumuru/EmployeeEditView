@@ -9,8 +9,8 @@
             menuReviewstatus: function(obj) {
                 return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerPersonalMenuReviewStatus', { params: { CustID: obj } });
             },
-            nodatastatus: function(obj) {
-                return http.get(editviewapp.apipath + 'CustomerPersonal/getCustomerPersonalMenuReviewStatus', { params: { CustID: obj } });
+            nodatastatus: function(id) {
+                return http.get(editviewapp.apipath + 'CustomerPersonalUpdate/getNoDataInformationLinkDisplay', { params: { ProfileID: id } });
             }
         };
     }

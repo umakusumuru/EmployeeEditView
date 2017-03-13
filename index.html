@@ -35,6 +35,12 @@
         .nav-sm .container.body .right_col {
             padding: 0px;
         }
+        
+        .nodatacls {
+            color: maroon;
+            font-size: 13px;
+            margin-top: 12px;
+        }
     </style>
 
 </head>
@@ -45,7 +51,7 @@
             <div class="edit_pages_sidebar clearfix" ng-controller="baseCtrl">
                 <div class="edit_page_profile_pic">
                     <img id="imgphoto" ng-src="{{imgsrc}}">
-                    <span id="lblcust_Id" style="display: none;"></span>
+                    <a href="javascript:void(0);" style="font-weight: bold;">Photo Request</a>
                 </div>
 
                 <div class="edit_pages_sidebar_profile_details">
@@ -72,39 +78,67 @@
                 <div class="edit_pages_sidebar_menu clearfix">
                     <ul>
                         <li>
-                            <a id="lnkeducationandprof" href="editEducation" ng-style="{color:model.lnkeducationandprofReview==true?'Red':''}">Education & Profession</a></li>
-                        <li>
-                            <a id="lnkmanagephoto" href="editManagePhoto">Manage Photo</a></li>
-                        <li>
-                            <a id="lnkparents" href="editParent" ng-style="{color:model.lnkparentsReview==true?'Red':''}">Parent Details</a></li>
-                        <li>
-                            <a id="lnkpartner" href="editPartnerpreference" ng-style="{color:model.lnkpartnerReview==true?'Red':''}">Partner Preferences</a></li>
-                        <li>
-                            <a id="lnksiblings" href="editSibbling" ng-style="{color:model.lnksiblingsReview==true?'Red':''}">Sibling Details</a></li>
-                        <li>
-                            <a id="lnkastro" href="editAstro" ng-style="{color:model.lnkastroReview==true?'Red':''}">Astro Details</a></li>
-                        <li>
-                            <a id="lnkproperty" href="editProperty" ng-style="{color:model.lnkpropertyReview==true?'Red':''}">Property Details</a>
+                            <a id="lnkeducationandprof" href="Education" ng-style="{color:model.lnkeducationandprofReview==true?'Red':''}">Education & Profession
+                                <span class="pull-right nodatacls"> {{model.rev.iReferenceDetails===0?'NoData':''}}</span>
+                            </a>
+
                         </li>
                         <li>
-                            <a id="lnkrelatives" href="editRelative" ng-style="{color:model.lnkrelativesReview==true?'Red':''}">Relative Details</a>
+                            <a href="ManagePhoto/91022">Manage Photo
+                                <span class="pull-right nodatacls"> {{model.rev.iManagePhoto===0?'NoPhoto':''}}</span></a></a>
                         </li>
                         <li>
-                            <a id="lnkreference" href="editReference" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">References</a>
+                            <a href="Parent" ng-style="{color:model.lnkparentsReview==true?'Red':''}">Parent Details
+                                <span class="pull-right nodatacls"> {{model.rev.iParentDetails===0?'NoData':''}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="lnkpartner" href="Partnerpreference" ng-style="{color:model.lnkpartnerReview==true?'Red':''}">Partner Preferences
+                                <span class="pull-right nodatacls"> {{model.rev.iPartnerPreference===0?'NoData':''}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="lnksiblings" href="Sibbling" ng-style="{color:model.lnksiblingsReview==true?'Red':''}">Sibling Details
+                                <span class="pull-right nodatacls"> {{model.rev.iSiblingDetails===0?'NoData':''}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="lnkastro" href="Astro" ng-style="{color:model.lnkastroReview==true?'Red':''}">Astro Details
+                                <span class="pull-right nodatacls"> {{model.rev.iAstroDetails===0?'NoData':''}}</span>
+                                
+                            </a>
+                        </li>
+                        <li>
+                            <a id="lnkproperty" href="Property" ng-style="{color:model.lnkpropertyReview==true?'Red':''}">Property Details
+
+                                 <span class="pull-right nodatacls"> {{model.rev.iPropertyDetails===0?'NoData':''}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="lnkrelatives" href="Relative" ng-style="{color:model.lnkrelativesReview==true?'Red':''}">Relative Details</a>
+                        </li>
+                        <li>
+                            <a id="lnkreference" href="Reference" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">References
+                                <span class="pull-right nodatacls"> {{model.rev.iReferenceDetails===0?'NoData':''}}</span>
+                                </a>
                         </li>
 
                         <li>
-                            <a href="editSpouse" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Spouse Details</a>
+                            <a href="Spouse" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Spouse Details
+                            </a>
                         </li>
 
                         <li>
-                            <a href="editContact" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Contact Details</a>
+                            <a href="Contact" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Contact Details
+                            </a>
                         </li>
                         <li>
-                            <a href="editOfcePurpose" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Office Purpose</a>
+                            <a href="OfcePurpose" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Office Purpose
+                            </a>
                         </li>
                         <li>
-                            <a href="editProfileSetting" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Profile Settings</a>
+                            <a href="ProfileSetting" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Profile Settings
+                            </a>
                         </li>
                     </ul>
                 </div>
