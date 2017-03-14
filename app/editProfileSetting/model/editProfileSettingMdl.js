@@ -37,7 +37,7 @@
                     model.ConfidentialArr = response.data[1].length > 0 ? JSON.parse(response.data[1]) : [];
                     model.profileDisplayArr = response.data[2].length > 0 ? JSON.parse(response.data[2]) : [];
                     model.gradeSelectionArr = response.data[3] !== undefined && response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
-                    console.log(model.profileSettingArr);
+                    console.log(model.ConfidentialArr);
                 }
             });
         };
@@ -82,6 +82,10 @@
                     break;
 
                 case 'confidential':
+                    debugger;
+                    model.csObj.chkisconfidential = item.ConfindentialStatusID === true ? true : false;
+                    model.csObj.chkvryhighconfidential = item.HighConfidentialStatusID === 1 ? true : false;
+
                     commonFactory.open('confidentialContent.html', model.scope, uibModal);
 
                     break;
@@ -174,6 +178,25 @@
             model.profileSettingAndDispalySubmit(obj.rdldisplayin, obj.rdlpwdblock, obj.txtblockedreason, 'DisplaySettings');
         };
 
+        model.getChkVals = function(val) {
+            return val === true ? 1 : 0;
+        };
+
+        model.confidentialSubmit = function(obj) {
+            debugger;
+            editProfileSettingService.confidentialSubmit(custID, model.getChkVals(obj.chkisconfidential), model.getChkVals(obj.chkvryhighconfidential), '2').then(function(response) {
+                console.log(response);
+                commonFactory.closepopup();
+                if (response.data != undefined && response.data.length > 0) {
+                    if (JSON.parse(response.data[0])[0].STATUS === 1) {
+                        model.pageload();
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'submitted Succesfully', 4500);
+                    }
+                } else {
+                    alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Updation failed', 4500);
+                }
+            });
+        };
 
         return model.init();
     }

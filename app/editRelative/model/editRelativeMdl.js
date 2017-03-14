@@ -15,7 +15,7 @@
         model.deleteDisplayTxt = '';
         model.identityID = 0;
         var logincustid = authSvc.getCustId();
-        var custid = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        var custid = model.CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
 
 
         //end declaration block

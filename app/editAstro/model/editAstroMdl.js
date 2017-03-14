@@ -16,7 +16,7 @@
         var s3obj = {};
 
         var logincustid = authSvc.getCustId();
-        var custID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        var custID = model.CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
         var isSubmit = true;
 
         model.loginpaidstatus = authSvc.getpaidstatus();

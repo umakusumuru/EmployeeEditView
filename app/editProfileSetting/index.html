@@ -150,7 +150,7 @@
                     </div>
                     <div id="UpdatePanel1" class="edit_page_item_ui clearfix">
 
-                        <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showprofilepopup('confidential');">Edit</a>
+                        <a href="javascript:void(0);" class="edit_page_edit_button" ng-click="page.model.showprofilepopup('confidential',item);">Edit</a>
 
                     </div>
                     <div id="UpdatePanel6" class="edit_page_details_item_desc clearfix">
@@ -445,7 +445,7 @@
 
 
 <script type="text/ng-template" id="confidentialContent.html">
-    <form name="refForm" novalidate role="form" ng-submit="page.model.commonContactSubmit(page.model.csObj)">
+    <form name="refForm" novalidate role="form" ng-submit="page.model.confidentialSubmit(page.model.csObj)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Confidential Settings
                 <a href="javascript:void(0);" ng-click="page.model.cancel();">

@@ -2,7 +2,7 @@
     'use strict';
 
 
-    function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss) {
+    function factory($http, authSvc, editEducationService, commonFactory, uibModal, filter, alertss, baseService) {
         var model = {};
         var logincustid = authSvc.getCustId();
 
@@ -27,10 +27,12 @@
         var isSubmit = true;
         model.educationID = 0;
         model.CustomerDataArr = [];
+        model.reviewdisplay = 'Education details';
         //end declaration block
 
 
         var CustID = logincustid !== undefined && logincustid !== null && logincustid !== "" ? logincustid : null;
+        model.CustID = CustID;
         model.init = function() {
             model.getdata();
             return model;
@@ -397,6 +399,20 @@
 
         };
 
+
+        // model.reviewonchange = function(booltype) {
+        //     if (booltype === true)
+        //         commonFactory.open('common/templates/reviewConfirmationPopup.html', model.scope, uibModal, 'sm');
+        // };
+
+
+        // model.reviewSubmit = function() {
+        //     baseService.menuReviewstatus(CustID, '1', '6,7,8').then(function(response) {
+        //         console.log(response.data);
+        //     });
+        // };
+
+
         return model.init();
     }
 
@@ -404,6 +420,6 @@
         .module('KaakateeyaEmpEdit')
         .factory('editEducationModel', factory)
 
-    factory.$inject = ['$http', 'authSvc', 'editEducationService', 'commonFactory', '$uibModal', '$filter', 'alert'];
+    factory.$inject = ['$http', 'authSvc', 'editEducationService', 'commonFactory', '$uibModal', '$filter', 'alert', 'baseService'];
 
 })(angular);

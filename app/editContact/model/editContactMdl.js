@@ -22,6 +22,8 @@
         model.referenceobj = {};
         model.canAddrobj = {};
         model.sibFlag = '';
+        model.setrelObj = {};
+        model.popupMobilenumber = '';
 
         model.init = function() {
             model.pageload();
@@ -38,9 +40,12 @@
                     model.SiiblingContactArr = response.data[3].length > 0 ? JSON.parse(response.data[3]) : [];
                     model.relativeContactArr = response.data[4].length > 0 ? JSON.parse(response.data[4]) : [];
                     model.referenceContactArr = response.data[5].length > 0 ? JSON.parse(response.data[5]) : [];
+
+                    console.log(model.candidateContactArr);
                 }
 
             });
+            model.primaryRelationSubmit(0, 0, '0');
         };
 
         model.commonContactSubmit = function(Icustfamiliyid, IName, IMoblieCountryCode, IMobileNumber, IMoblieCountryCode2, IMobileNumber2, ILandCountryCode,
@@ -315,6 +320,80 @@
             });
 
         };
+
+        model.setprimaryrelationPopup = function() {
+            commonFactory.open('primaryRelationContent.html', model.scope, uibModal);
+        };
+
+
+        model.primaryRelationSubmit = function(mob, email, flag) {
+            var inObj = {
+                CustID: custID,
+                PrimaryMobileRel: mob,
+                PrimaryEmailRel: email,
+                iflage: flag
+            };
+
+            editContactService.submitPrimaryRelationData(inObj).then(function(response) {
+                console.log(response);
+
+                if (flag === '1') {
+                    commonFactory.closepopup();
+                    model.pageload();
+                } else {
+                    model.primaryRel = JSON.parse(response.data[0])[0];
+                    console.log(model.primaryRel);
+                    debugger;
+                    model.setrelObj.ddlPrimaryMobileRel = model.primaryRel.PrimaryMobileRel;
+                    model.setrelObj.ddlPrimaryEmailRel = model.primaryRel.PrimaryEmailRel;
+
+                }
+
+            });
+
+        };
+
+
+        model.sendMobileCode = function(CountryID, CCode, MobileNumber, familyID) {
+            model.popupMobilenumber = MobileNumber;
+            var inputOBj = {
+                iCountryID: CountryID,
+                iCCode: CCode,
+                MobileNumber: MobileNumber,
+                CustContactNumbersID: familyID
+            };
+
+            // editContactService.sendMobileCode(inputOBj).then(function(response) {
+            //     console.log(response);
+            //     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Valid Mobile Verify code sent successfully', 4500);
+            // });
+            commonFactory.open('verifyMobileContent.html', model.scope, uibModal);
+
+
+
+        };
+
+
+        model.verifymail = function() {
+            editContactService.verifyEmail(custID).then(function(response) {
+                console.log(response);
+
+                if (response.data !== undefined) {
+                    if (response.data === 1) {
+                        alertss.timeoutoldalerts(model.scope, 'alert-success', 'Email verify mail send Successfully', 4500);
+                    }
+                }
+            });
+        };
+
+        model.verifyMobCode = function() {
+            // editContactService.verifyMobile(custID).then(function(response) {
+            //     console.log(response);
+
+            // });
+
+        };
+
 
 
 

@@ -25,12 +25,13 @@ editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoi
 editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
 
 editviewapp.BucketName = 'kaakateeyaprod';
+editviewapp.editName = 'edit/:custId/';
 
 editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
     var states = [
         { name: 'editview', url: '', subname: [], abstract: true },
         { name: 'editview.editEducation', url: '/Education', subname: ['common/directives/datePickerDirective.js'] },
-        { name: 'editview.editManagePhoto', url: '/ManagePhoto/:profileID', subname: ['common/services/selectBindServices.js'] },
+        { name: 'editview.editManagePhoto', url: '/ManagePhoto', subname: ['common/services/selectBindServices.js'] },
         { name: 'editview.editParent', url: '/Parent', subname: [] },
         { name: 'editview.editPartnerpreference', url: '/Partnerpreference', subname: [] },
         { name: 'editview.editSibbling', url: '/Sibbling', subname: [] },
@@ -66,7 +67,6 @@ editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     // you can lazy load files for an existing module
                     var edit = item.name.slice(9);
-                    debugger;
                     if (editviewapp.typeOfEnv === 'dev') {
                         return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
 
@@ -75,7 +75,6 @@ editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
                     }
 
                     // return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
-
                 }]
             }
         });

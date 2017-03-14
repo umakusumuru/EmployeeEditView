@@ -7,6 +7,7 @@
              model;
          vm.init = function() {
              scope.model = model = baseModel;
+             model.scope = scope;
          };
          vm.init();
      }
