@@ -22,13 +22,15 @@
             },
 
             sendMobileCode: function(obj) {
-                return http.get(editviewapp.apipath + 'StaticPages/getResendmobile', { params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustContactNumbersID: obj.CustContactNumbersID } });
+                return http.get(editviewapp.apipath + 'StaticPages/getCustomerdmobileVerfCodesend', {
+                    params: { iCountryID: obj.iCountryID, iCCode: obj.iCCode, MobileNumber: obj.MobileNumber, CustFamilyID: obj.CustFamilyID }
+                });
             },
             verifyEmail: function(obj) {
                 return http.get(editviewapp.apipath + 'CustomerPersonal/getCandidateContactsendmailtoemailverify', { params: { CustID: obj } });
             },
-            verifyMobile: function(VCode, flag, CustContactnumID) {
-                return http.get(editviewapp.apipath + 'StaticPages/getEmilVerificationCode', { params: { VerificationCode: VCode, i_EmilMobileVerification: flag, CustContactNumbersID: CustContactnumID } });
+            verifyMobile: function(VCode, CustFamilyid) {
+                return http.get(editviewapp.apipath + 'StaticPages/getCustomerEmilVerificationCodeUpdate', { params: { VerificationCode: VCode, CustFamilyID: CustFamilyid } });
             },
         };
     }

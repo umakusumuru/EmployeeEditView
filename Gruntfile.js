@@ -6,6 +6,21 @@ var fs = require('fs');
 var packageJson = JSON.parse(fs.readFileSync('./package.json'));
 var plugins = packageJson.buildSettings.plugins;
 var css = packageJson.buildSettings.css;
+var folder = {
+    'app/editAstro/src/script.min.js': 'app/editAstro/**/*.js',
+    'app/editContact/src/script.min.js': 'app/editContact/**/*.js',
+    'app/editEducation/src/script.min.js': 'app/editEducation/**/*.js',
+    'app/editManagePhoto/src/script.min.js': 'app/editManagePhoto/**/*.js',
+    'app/editOfcePurpose/src/script.min.js': 'app/editOfcePurpose/**/*.js',
+    'app/editParent/src/script.min.js': 'app/editParent/**/*.js',
+    'app/editPartnerpreference/src/script.min.js': 'app/editPartnerpreference/**/*.js',
+    'app/editProfileSetting/src/script.min.js': 'app/editProfileSetting/**/*.js',
+    'app/editProperty/src/script.min.js': 'app/editProperty/**/*.js',
+    'app/editReference/src/script.min.js': 'app/editReference/**/*.js',
+    'app/editRelative/src/script.min.js': 'app/editRelative/**/*.js',
+    'app/editSibbling/src/script.min.js': 'app/editSibbling/**/*.js',
+    'app/editSpouse/src/script.min.js': 'app/editSpouse/**/*.js'
+};
 module.exports = function(grunt) {
     console.log(plugins);
     // ===========================================================================
@@ -34,7 +49,6 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-
                     'dist/js/main.min.js': ['dist/src/main.js']
                 }
             }
@@ -80,7 +94,7 @@ module.exports = function(grunt) {
                 files: [{
                     // Target-specific file lists and/or options go here. 
                     'index.html': [
-                        plugins, 'index.js', 'app/**/*.js'
+                        plugins, 'index.js', 'app/**/**/*.js'
                     ]
                 }],
             },
@@ -93,7 +107,8 @@ module.exports = function(grunt) {
                 },
                 files: {
                     // Target-specific file lists and/or options go here. 
-                    'index.html': [plugins, 'index.js', 'dist/js/*.js']
+                    // 'index.html': [plugins, 'index.js', 'dist/js/*.js']
+                    'index.html': ['dist/js/*.js']
                 },
             },
         },
@@ -114,23 +129,27 @@ module.exports = function(grunt) {
                 // separator: ';'
             },
             js: { //target
-                src: ['app/**/*.js'],
-                dest: 'app/src/main.js',
-                filter: function(dest) { // `dest`, in this instance, is the filepath of each matched `src`
-                    // var cwd = this.cwd, // Configures variables (these are documented for your convenience only)
-                    //     src = dest.replace(new RegExp('^' + cwd), '');
-                    // dest = grunt.task.current.data.files[0].dest;
-                    // return (!grunt.file.exists(dest + src)); // Copies `src` files ONLY if their destinations are unoccupied
-                    console.log(dest);
-                    dest: 'app/src/main.js'
-                }
-
-            }
+                src: ['index.js', 'app/**/**/*.js', 'dist/html/templates.js'],
+                dest: 'dist/src/main.js'
+            },
             // css: {
             //     src: css,
             //     dest: 'dist/src/main.css'
             // }
         },
+
+        ngtemplates: {
+            myapp: {
+                options: {
+                    base: "web",
+                    module: "KaakateeyaEmpEdit",
+                    // prefix: 'editview/',
+                },
+                src: ['index.html', 'app/**/*.html', 'common/**/*.html', 'PageCode/viewFormat.html', 'templates\*.html'],
+                dest: "dist/html/templates.js"
+            }
+        },
+
         copy: {
             images: {
                 expand: true,
@@ -225,6 +244,17 @@ module.exports = function(grunt) {
                     }]
                 }
             }
+        },
+        folder_list: {
+            options: {
+                // Default options, you dont need these they are just to highlight the options available. 
+                files: false,
+                folders: true
+            },
+            files: {
+                src: ['app/**'],
+                dest: 'tmp/fixtures.json',
+            },
         }
 
     });
@@ -234,7 +264,7 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', ['jshint', 'cssmin', 'concat', 'scriptlinker:dev', 'imagemin']);
 
     // only run production configuration 
-    grunt.registerTask('prod', ['jshint', 'concat', 'uglify', 'cssmin', 'scriptlinker:prod', 'imagemin']);
+    grunt.registerTask('prod', ['concat', 'ngtemplates', 'concat', 'uglify', 'scriptlinker:prod', 'imagemin']);
     grunt.registerTask('Robot', ['mkdir', 'file-creator', 'string-replace']);
 
     // ===========================================================================
@@ -255,5 +285,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-file-creator');
     grunt.loadNpmTasks('grunt-string-replace');
-
+    grunt.loadNpmTasks('grunt-folder-list');
+    grunt.loadNpmTasks('grunt-angular-templates');
 };

@@ -7,13 +7,12 @@
  * Main App Creation
  */
 
-
 var editviewapp = angular.module('KaakateeyaEmpEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'KaakateeyaRegistration', 'oc.lazyLoad'
 ]);
 editviewapp.apipath = 'http://183.82.0.58:8025/Api/';
 // editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
-editviewapp.typeOfEnv = 'dev';
+editviewapp.env = 'dev';
 
 editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
 editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
@@ -62,21 +61,21 @@ editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
 
         $stateProvider.state(item.name, {
             url: item.url,
-            views: innerView,
-            resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
-                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
-                    // you can lazy load files for an existing module
-                    var edit = item.name.slice(9);
-                    if (editviewapp.typeOfEnv === 'dev') {
-                        return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
+            views: innerView
+                // resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
+                //     loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                //         // you can lazy load files for an existing module
+                //         var edit = item.name.slice(9);
+                //         if (editviewapp.env === 'dev') {
+                //             return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
 
-                    } else {
-                        return $ocLazyLoad.load(['app/' + edit + '/script.min.js', item.subname]);
-                    }
+            //         } else {
+            //             return $ocLazyLoad.load(['app/' + edit + '/src/script.min.js', item.subname]);
+            //         }
 
-                    // return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
-                }]
-            }
+            //         // return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
+            //     }]
+            // }
         });
         $locationProvider.html5Mode(true);
     });

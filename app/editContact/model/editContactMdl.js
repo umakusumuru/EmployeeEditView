@@ -24,7 +24,8 @@
         model.sibFlag = '';
         model.setrelObj = {};
         model.popupMobilenumber = '';
-
+        model.mobileVerificationCode = "";
+        model.ID = 0;
         model.init = function() {
             model.pageload();
             return model;
@@ -356,18 +357,20 @@
 
         model.sendMobileCode = function(CountryID, CCode, MobileNumber, familyID) {
             model.popupMobilenumber = MobileNumber;
+            model.ID = familyID;
             var inputOBj = {
                 iCountryID: CountryID,
                 iCCode: CCode,
                 MobileNumber: MobileNumber,
-                CustContactNumbersID: familyID
+                CustFamilyID: familyID
             };
 
-            // editContactService.sendMobileCode(inputOBj).then(function(response) {
-            //     console.log(response);
-            //     alertss.timeoutoldalerts(model.scope, 'alert-success', 'Valid Mobile Verify code sent successfully', 4500);
-            // });
-            commonFactory.open('verifyMobileContent.html', model.scope, uibModal);
+            editContactService.sendMobileCode(inputOBj).then(function(response) {
+                console.log(response);
+                model.mobileVerificationCode = response.data;
+                commonFactory.open('verifyMobileContent.html', model.scope, uibModal);
+            });
+
 
 
 
@@ -386,11 +389,17 @@
             });
         };
 
-        model.verifyMobCode = function() {
-            // editContactService.verifyMobile(custID).then(function(response) {
-            //     console.log(response);
-
-            // });
+        model.verifyMobCode = function(val) {
+            if (val === "") {
+                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please enter Mobile verify Code', 4500);
+            } else if (model.mobileVerificationCode === val) {
+                editContactService.verifyMobile(model.mobileVerificationCode, model.ID).then(function(response) {
+                    console.log(response);
+                    commonFactory.closepopup();
+                });
+            } else {
+                alertss.timeoutoldalerts(model.scope, 'alert-danger', 'Please Enter Valid Verification code', 4500);
+            }
 
         };
 

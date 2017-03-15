@@ -1002,7 +1002,7 @@
 
 
 <script type="text/ng-template" id="verifyMobileContent.html">
-    <form name="refForm" novalidate role="form" ng-submit="page.model.verifyMobCode(page.model.verifymobObj)">
+    <form name="refForm" novalidate role="form" ng-submit="page.model.verifyMobCode(page.model.verifymobObj.txtVerificationcode)">
         <div class="modal-header">
             <h3 class="modal-title text-center" id="modal-title">Mobile verification code sent successfully to {{page.model.popupMobilenumber}}
                 <a href="javascript:void(0);" ng-click="page.model.cancel();">
