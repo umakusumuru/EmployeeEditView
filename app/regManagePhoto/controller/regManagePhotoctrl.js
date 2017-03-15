@@ -11,7 +11,7 @@
      }
      angular
          .module('KaakateeyaEmpReg')
-         .controller('parametervalueCtrl', controller)
+         .controller('regManagePhotoCtrl', controller)
 
      controller.$inject = ['$location'];
  })(angular);

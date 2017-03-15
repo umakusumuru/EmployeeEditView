@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .factory('alert', factory)
 
     factory.$inject = ['$mdDialog', '$uibModal', '$timeout'];

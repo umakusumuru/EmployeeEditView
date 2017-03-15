@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .directive('datePicker', directive);
 
     function directive() {

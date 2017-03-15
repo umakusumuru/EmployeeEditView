@@ -1,6 +1,7 @@
 (function(angular) {
     'use strict';
 
+
     function factory($http) {
         var service = {
             getData: getData
@@ -13,7 +14,8 @@
 
     angular
         .module('KaakateeyaEmpReg')
-        .factory('parametervalueService', factory)
+        .factory('regManagePhotoModel', factory)
 
     factory.$inject = ['$http'];
+
 })(angular);

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .service('fileUpload', service)
 
     service.$inject = ['$http'];

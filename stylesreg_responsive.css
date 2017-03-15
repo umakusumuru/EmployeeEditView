@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+@media only screen and ( max-width:1200px) {}
+
+@media only screen and ( max-width:1160px) {}
+
+@media only screen and ( max-width:1080px) {}
+
+@media only screen and (max-width:1040px) {}
+
+@media only screen and ( max-width:860px) {}
+
+.pics_selected_list_main_lt {
+    width: 100%;
+    float: none;
+}
+
+.photo_upload_instrctns_list {
+    width: 100%;
+}
+
+.photo_upload_instrctns_list a {
+    display: inline-block;
+    width: 33.3%;
+    padding: 24px 1%;
+    float: left;
+}
+
+@media only screen and ( max-width:786px) {}
+
+@media only screen and ( max-width:768px) {}
+
+@media only screen and ( max-width:680px) {
+    .pics_incorrect_list {
+        float: none;
+        width: 100%;
+        padding: 0 0 20px 0;
+    }
+    .pics_correct_list {
+        float: none;
+        width: 100%;
+        padding: 0 0 20px 0;
+    }
+}
+
+@media only screen and ( max-width:600px) {
+    .pics_selected_list_item img {
+        height: 140px !important;
+    }
+}
+
+@media only screen and ( max-width:540px) {}
+
+@media only screen and ( max-width:480px) {
+    .photo_upload_instrctns_list a {
+        display: block;
+        float: none;
+        width: auto;
+        padding: 20px;
+    }
+    .pics_selected_list_main_lt table tbody tr td {
+        float: none;
+        display: block;
+        width: auto;
+    }
+    .pics_selected_list_item img {
+        height: auto !important;
+    }
+}
+
+@media only screen and ( max-width:420px) {}
+
+@media only screen and ( max-width:360px) {
+    .pics_incorrect_list table tr td {
+        width: 50%;
+        padding: 0 2% 10px 0;
+    }
+}
+
+@media only screen and ( max-width:320px) {}

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .factory('authSvc', factory)
 
     factory.$inject = ['$injector'];

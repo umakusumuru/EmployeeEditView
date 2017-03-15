@@ -48,9 +48,13 @@ module.exports = function(grunt) {
                 mangle: false
             },
             build: {
+<<<<<<< HEAD
                 files: {
                     'dist/js/main.min.js': ['dist/src/main.js']
                 }
+=======
+                files: folder
+>>>>>>> d43c54e4e3d91d181712ba9e4a4e2f94ead83678
             }
         },
         cssmin: {
@@ -178,32 +182,32 @@ module.exports = function(grunt) {
         mkdir: {
             all: {
                 options: {
-                    create: [grunt.option('option-path')]
+                    create: ['app/' + grunt.option('option-path')]
                 },
             },
         },
         "file-creator": {
             "option": {
                 files: [{
-                        file: ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
+                        file: 'app/' + ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
+                        file: 'app/' + ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        file: 'app/' + ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/') + ("index.html")),
+                        file: 'app/' + ((grunt.option('option-path') + '/') + ("index.html")),
                         method: function(fs, fd, done) {
                             done();
                         }
@@ -222,19 +226,19 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                         src: './PageCode/ctrlFormat.js',
-                        dest: ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
+                        dest: 'app/' + ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
                     },
                     {
                         src: './PageCode/mdlFormat.js',
-                        dest: ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
+                        dest: 'app/' + ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
                     },
                     {
                         src: './PageCode/serviceFormat.js',
-                        dest: ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        dest: 'app/' + ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
                     },
                     {
                         src: './PageCode/viewFormat.html',
-                        dest: ((grunt.option('option-path') + '/') + ("index.html"))
+                        dest: 'app/' + ((grunt.option('option-path') + '/') + ("index.html"))
                     }
                 ],
                 options: {
@@ -286,5 +290,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-file-creator');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-folder-list');
+<<<<<<< HEAD
     grunt.loadNpmTasks('grunt-angular-templates');
+=======
+
+>>>>>>> d43c54e4e3d91d181712ba9e4a4e2f94ead83678
 };
