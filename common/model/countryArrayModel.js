@@ -62,9 +62,9 @@
     }
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .factory('countryArrayModel', factory)
 
-    factory.$inject = ['$http', 'SelectBindService'];
+    factory.$inject = ['$http', 'SelectBindServicereg'];
 
 })(angular);

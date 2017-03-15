@@ -1,0 +1,457 @@
+<div class="right_col" role="main">
+    <div class="register_page_main">
+
+        <h4>Registration</h4>
+
+        <div class="regmain">
+
+            <div layout="column" ng-cloak="" class="inputdemoErrors">
+                <md-content layout-padding="">
+                    <form name="secregForm" accessible-form novalidate role="form" ng-submit="secregForm.$valid && secondRegSubmit(regsec);">
+
+                        <div class="reg_fields_entry clearfix">
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Name</label>
+                                <input readonly md-no-asterisk="" name="LabelName" ng-model="regsec.LabelName">
+                            </md-input-container>
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Marital Status</label>
+                                <md-select name="rbtnmarital" ng-model="regsec.rbtnmarital" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in MaritalStatus">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.rbtnmarital.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Complexion</label>
+                                <md-select name="rbtncomplexion" ng-model="regsec.rbtncomplexion" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in Complexion">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.rbtncomplexion.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Physically Challenged</label>
+                                <md-select name="rbtnphysicalstatus" ng-model="regsec.rbtnphysicalstatus" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in PhysicalStatus">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.rbtnphysicalstatus.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Height</label>
+                                <md-select name="ddlHeight" ng-model="regsec.ddlHeight" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in height">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlHeight.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Born Citizenship</label>
+                                <md-select name="ddlBornCitizenship" ng-model="regsec.ddlBornCitizenship" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in Country">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlBornCitizenship.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <div class="clear"></div>
+                            <!--<hr>-->
+
+                            <h4 class="well">Education details</h4>
+                            </br>
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Education category</label>
+                                <md-select name="ddlEduCategory" ng-model="regsec.ddlEduCategory" required="" ng-change="changeBind('educat',regsec.ddlEduCategory)">
+                                    <md-option ng-value="h.value" ng-repeat="h in educationcategory">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlEduCategory.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Group</label>
+                                <md-select name="ddlEduGroup" ng-model="regsec.ddlEduGroup" required="" ng-change="changeBind('edugroup',regsec.ddlEduGroup)">
+                                    <md-option ng-value="h.value" ng-repeat="h in edugroup">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlEduGroup.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Specialization</label>
+                                <md-select name="ddlEduSpecialisation" ng-model="regsec.ddlEduSpecialisation" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in eduSplArr">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlEduSpecialisation.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <div class="control-group col-lg-12">
+                                <md-input-container class="md-block col-lg-12">
+                                    <label>Education merits</label>
+                                    <textarea maxlength="500" rows="2" md-no-asterisk="" name="txtEducationMerits" ng-model="regsec.txtEducationMerits"></textarea>
+                                </md-input-container>
+                            </div>
+
+                            <div class="clear"></div>
+                            <!--<hr>-->
+
+                            <h4 class="well">profession details</h4>
+                            </br>
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Employed in</label>
+                                <md-select name="ddlEmployedIn" ng-model="regsec.ddlEmployedIn" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in ProfCatgory">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlEmployedIn.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Profession Group</label>
+                                <md-select name="ddlProfessionalGroup" ng-model="regsec.ddlProfessionalGroup" required="" ng-change="changeBind('profGroup',regsec.ddlProfessionalGroup)">
+                                    <md-option ng-value="h.value" ng-repeat="h in ProfGroup">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlProfessionalGroup.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Profession</label>
+                                <md-select name="ddlProfession" ng-model="regsec.ddlProfession" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in professionArr">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlProfession.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Company name</label>
+                                <input maxlength="100" md-no-asterisk="" name="txtCompanyName" ng-model="regsec.txtCompanyName">
+
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Currency</label>
+                                <md-select name="ddlcurrency" ng-model="regsec.ddlcurrency">
+                                    <md-option ng-value="h.value" ng-repeat="h in currency">{{h.label}} </md-option>
+                                </md-select>
+
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Monthly Salary</label>
+                                <input maxlength="7" md-no-asterisk="" name="txtSalary" ng-model="regsec.txtSalary" ng-pattern="/^[0-9]+$/">
+                                <div ng-messages="secregForm.txtSalary.$error">
+                                    <div ng-message-exp="['pattern']">
+                                        enter only numbers.
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-12">
+                                <label>Occupation details</label>
+                                <textarea maxlength="500" rows="2" md-no-asterisk="" name="txtOcccupationDetails" ng-model="regsec.txtOcccupationDetails"></textarea>
+                            </md-input-container>
+
+                            <div class="clear"></div>
+                            <!--<hr>-->
+                            <h4 class="well">Candidate location details</h4>
+                            <br>
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>Country living in</label>
+                                <md-select name="ddlCountryLivingIn" ng-model="regsec.ddlCountryLivingIn" ng-change="changeBind('Country',regsec.ddlCountryLivingIn)">
+                                    <md-option ng-value="h.value" ng-repeat="h in Country">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlCountryLivingIn.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>State</label>
+                                <md-select name="ddlStatelivingIn" ng-model="regsec.ddlStatelivingIn" required="" ng-change="changeBind('state',regsec.ddlStatelivingIn,regsec.ddlCountryLivingIn)">
+                                    <md-option ng-value="h.value" ng-repeat="h in stateArr">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlStatelivingIn.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex="50" class="col-lg-4" ng-if="regsec.ddlCountryLivingIn==1">
+                                <label>District</label>
+                                <md-select name="ddlDistricLivingIn" ng-model="regsec.ddlDistricLivingIn" required="" ng-change="changeBind('district',regsec.ddlDistricLivingIn)">
+                                    <md-option ng-value="h.value" ng-repeat="h in districtArr">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlDistricLivingIn.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container flex="50" class="col-lg-4">
+                                <label>City</label>
+                                <md-select name="ddlcityLivingIn" ng-model="regsec.ddlcityLivingIn" required="">
+                                    <md-option ng-value="h.value" ng-repeat="h in cityArr">{{h.label}} </md-option>
+                                </md-select>
+                                <div class="errors" ng-messages="secregForm.ddlcityLivingIn.$error">
+                                    <div ng-message="required">Required</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container flex="50" class="col-lg-4" ng-hide="regsec.ddlBornCitizenship==regsec.ddlCountryLivingIn">
+                                <label>Visa status</label>
+                                <md-select name="ddlVisaStatus" ng-model="regsec.ddlVisaStatus">
+                                    <md-option ng-value="h.value" ng-repeat="h in visastatus">{{h.label}} </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container class="col-lg-4" style="padding-right: 0px;" ng-hide="regsec.ddlBornCitizenship==regsec.ddlCountryLivingIn">
+                                <label>Residing since</label>
+                                <md-datepicker ng-model="regsec.from" md-min-date="minDate" md-max-date="maxDate">
+                                </md-datepicker>
+                            </md-input-container>
+
+                            <div class="clear"></div>
+                            <!--<hr>-->
+                            <h4 class="well">Family details</h4>
+                            <br>
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Father Name</label>
+                                <input maxlength="100" required="" md-asterisk="" name="txtFatherName" ng-model="regsec.txtFatherName">
+                                <div ng-messages="secregForm.txtFatherName.$error">
+                                    <div ng-message="required">This is required.</div>
+                                    <div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Father’s education</label>
+                                <input maxlength="150" md-no-asterisk="" name="txtFatherEducation" ng-model="regsec.txtFatherEducation">
+
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Father’s profession</label>
+                                <input maxlength="200" md-no-asterisk="" name="txtFatherProfession" ng-model="regsec.txtFatherProfession">
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Mother’s name</label>
+                                <input maxlength="100" required="" md-asterisk="" name="txtMotherName" ng-model="regsec.txtMotherName">
+                                <div ng-messages="secregForm.txtMotherName.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Mother’s education</label>
+                                <input maxlength="150" md-no-asterisk="" name="txtMotherEducation" ng-model="regsec.txtMotherEducation">
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Mother’s profession</label>
+                                <input maxlength="200" md-no-asterisk="" name="txtMotherprofession" ng-model="regsec.txtMotherprofession">
+
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Father’s Native place</label>
+                                <input maxlength="100" md-no-asterisk="" name="txtfathernative" ng-model="regsec.txtfathernative">
+
+                            </md-input-container>
+
+                            <md-input-container class="md-block col-lg-4">
+                                <label>Mother’s Native place</label>
+                                <input maxlength="100" md-no-asterisk="" name="txtmothernative" ng-model="regsec.txtmothernative">
+                            </md-input-container>
+                            <div class="col-lg-4">
+                                <md-input-container flex="50" class="col-lg-4">
+                                    <label>No of Brothers</label>
+                                    <md-select name="ddlBrothers" ng-model="regsec.ddlBrothers" required="">
+                                        <md-option ng-value="h.value" ng-repeat="h in noOfsibblingsArr">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="secregForm.ddlBrothers.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container flex="50" class="col-lg-4">
+                                    <label>No of Sisters</label>
+                                    <md-select name="ddlSisters" ng-model="regsec.ddlSisters" required="">
+                                        <md-option ng-value="h.value" ng-repeat="h in noOfsibblingsArr">{{h.label}} </md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="secregForm.ddlSisters.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="clear"></div>
+                            <!--<hr>-->
+
+                            <div>
+                                <h4 class="well">About yourself</h4>
+                                <p>
+                                    Write About your unique characteristics,The Most Important Things In your life like your Aspiration, Interests, things you like to do,,,,,
+
+                                </p>
+                                <div class="profile_self_dcrb">
+                                    <p>(Minimum 50 characters and maximum 1000 characters).</p>
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>About yourself</label>
+                                    <textarea maxlength="1000" rows="3" ng-minlength="50" required="" md-asterisk="" name="txtabouturself" ng-model="regsec.txtabouturself"></textarea>
+                                    <div ng-messages="secregForm.txtabouturself.$error">
+                                        <div ng-message-exp="['required', 'minlength']">
+                                            This is required and enter Minimum 50 characters
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <p><span>Note: </span>Do not mention any contact information <b>phone numbers, email id’s</b> or your profile may be rejected.</p>
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div class="pull-right">
+                                <md-button type="submit" class="md-raised md-warn md-hue-2" class="button_custom" tabindex="37">SUBMIT</md-button>
+                            </div>
+                        </div>
+                    </form>
+                </md-content>
+            </div>
+        </div>
+        <!--<button ng-click="redirect();">test</button>-->
+    </div>
+</div>
+
+<style>
+    .btn-group {
+        width: 98%;
+        text-align: left;
+    }
+    
+    .multiselect {
+        border: solid 1px #ADA2A2 !important;
+        color: #000;
+        background: #fff !important;
+        box-shadow: none !important;
+        height: 34px !important;
+        line-height: 33px;
+        margin: 0 !important;
+    }
+    
+    .register_page_main textarea {
+        box-shadow: none;
+        border-radius: 3px !important;
+        height: 35px;
+        width: 98%;
+        line-height: 28px;
+        padding: 4px 2%;
+        margin: 0;
+    }
+    
+    .input-group {
+        width: 98%;
+        text-align: left;
+    }
+    /*textarea {
+        border: 0 !important;
+        border-bottom: 1px solid red !important;
+        outline: 0 !important;
+        border-style: solid !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+    }*/
+    
+    md-input-container.md-input-invalid .md-input {
+        border-color: rgb(221, 44, 0) !important;
+    }
+    
+    .md-datepicker-input {
+        font-size: 14px;
+        box-sizing: border-box;
+        border: none;
+        box-shadow: none;
+        outline: none;
+        background: transparent;
+        min-width: 299px;
+        max-width: 328px;
+        padding: 0 0 5px;
+    }
+    
+    .col-lg-4 {
+        padding-right: 3%;
+    }
+    
+    .col-lg-4 md-datepicker {
+        padding-right: 0% !important;
+    }
+    
+    .well {
+        padding: 11px;
+    }
+    
+    .regmain {
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 7px;
+    }
+    
+    .md-datepicker-floating-label>md-datepicker .md-datepicker-button {
+        float: right;
+        margin-top: -2.5px;
+    }
+    
+    .md-datepicker-floating-label.md-datepicker-has-calendar-icon>label:not(.md-no-float):not(.md-container-ignore) {
+        right: 18px;
+        left: 0;
+        width: calc(100% - 84px);
+    }
+    
+    .md-block>textarea {
+        border: 1px solid rgb(201, 188, 188) !important;
+    }
+    
+    .reg_fields_entry .col-lg-4 {
+        margin: 0;
+        min-height: 70px;
+    }
+    
+    .linkdisableCls {
+        pointer-events: none;
+        cursor: default;
+    }
+    
+    .profile_own_menu ul li:hover ul {
+        top: 25px;
+        opacity: 1;
+        display: none;
+    }
+    
+    md-content {
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+</style>
+<script src="build/js/custom.js" type="text/javascript"></script>

@@ -22,8 +22,13 @@
     <link href="node_modules/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" rel="stylesheet" />
 
     <link href="bower_components/angular-loading-bar/build/loading-bar.min.css" rel="stylesheet" />
-    <link href="css/scss/mainstyles.css" rel="stylesheet" />
+    <link href="mainstyles.min.css" rel="stylesheet" />
     <link href="stylesreg.css" rel="stylesheet" />
+
+
+
+
+
 
     <link href="build/css/custom_styles.css" rel="stylesheet" />
 
@@ -45,108 +50,16 @@
 
 </head>
 
-<body class="nav-sm" ng-app="KaakateeyaEmpEdit" ui-router-styles>
+<body class="nav-sm" ng-app="KaakateeyaEmpReg" ui-router-styles>
     <div class="container body">
         <div class="main_container">
-            <div class="edit_pages_sidebar clearfix" ng-controller="baseCtrl">
-                <div class="edit_page_profile_pic">
-                    <img id="imgphoto" ng-src="{{model.PersonalObj.ProfilePic}}">
-                    <a href="javascript:void(0);" style="font-weight: bold;" ng-click="model.photorequestAndshow();"> {{model.PersonalObj.ProfilePic.indexOf('Fnoimage.jpg')!==-1 || model.PersonalObj.ProfilePic.indexOf('Mnoimage.jpg')!==-1?'Photo Request':'View Photo' }}         </a>
-                </div>
-
-                <div class="edit_pages_sidebar_profile_details">
-                    <h6>
-                        <span>{{model.PersonalObj.Name+" ("+model.PersonalObj.ProfileID+")"}}</span></h6>
-                    <div class="edit_pages_sidebar_profile_details_in">
-
-                        <p>
-                            <span>{{model.PersonalObj.MartialStatus+" ,"+model.PersonalObj.DateofBirth+((model.PersonalObj.Age!="" && model.PersonalObj.Age!=null)?" ("+model.PersonalObj.Age+")":model.PersonalObj.Age)+((model.PersonalObj.Height!="" && model.PersonalObj.Height!=null)?" ,"+model.PersonalObj.Height:model.PersonalObj.Height)+((model.PersonalObj.Complexion!="")?" ,"+model.PersonalObj.Complexion:model.PersonalObj.Complexion)}}</span>
-                        </p>
-                        <p>
-                            <span>{{model.PersonalObj.Religion+" ,"+model.PersonalObj.Mothertongue+", "+model.PersonalObj.Caste+((model.PersonalObj.SubCaste!="" && model.PersonalObj.SubCaste!=null)? " ("+SubCaste+")":SubCaste)}}</span>
-                        </p>
-                        <p>
-                            <span>
-                <span  style="font-weight:bold;"> {{(model.PersonalObj.Borncountry!=null && model.PersonalObj.Borncountry!="")?" Born Citizen:"+model.PersonalObj.Borncountry:Borncountry}}</span>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="clear"></div>
-
-                <div class="edit_pages_sidebar_menu clearfix">
-                    <ul>
-                        <li>
-                            <a id="lnkeducationandprof" href="Education" ng-style="{color:model.lnkeducationandprofReview==true?'Red':''}">Education & Profession
-                                <span class="pull-right nodatacls"> {{model.rev.iCustomerPersonalDetails===0?'NoData':''}}</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="ManagePhoto">Manage Photo
-                                <span class="pull-right nodatacls"> {{model.rev.iManagePhoto===0?'NoPhoto':''}}</span></a></a>
-                        </li>
-                        <li>
-                            <a href="Parent" ng-style="{color:model.lnkparentsReview==true?'Red':''}">Parent Details
-                                <span class="pull-right nodatacls"> {{model.rev.iParentDetails===0?'NoData':''}}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkpartner" href="Partnerpreference" ng-style="{color:model.lnkpartnerReview==true?'Red':''}">Partner Preferences
-                                <span class="pull-right nodatacls"> {{model.rev.iPartnerPreference===0?'NoData':''}}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnksiblings" href="Sibbling" ng-style="{color:model.lnksiblingsReview==true?'Red':''}">Sibling Details
-                                <span class="pull-right nodatacls"> {{model.rev.iSiblingDetails===0?'NoData':''}}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkastro" href="Astro" ng-style="{color:model.lnkastroReview==true?'Red':''}">Astro Details
-                                <span class="pull-right nodatacls"> {{model.rev.iAstroDetails===0?'NoData':''}}</span>
-                                
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkproperty" href="Property" ng-style="{color:model.lnkpropertyReview==true?'Red':''}">Property Details
-
-                                 <span class="pull-right nodatacls"> {{model.rev.iPropertyDetails===0?'NoData':''}}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a id="lnkrelatives" href="Relative" ng-style="{color:model.lnkrelativesReview==true?'Red':''}">Relative Details</a>
-                        </li>
-                        <li>
-                            <a id="lnkreference" href="Reference" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">References
-                                <span class="pull-right nodatacls"> {{model.rev.iReferenceDetails===0?'NoData':''}}</span>
-                                </a>
-                        </li>
-
-                        <li>
-                            <a href="Spouse" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Spouse Details
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="Contact" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Contact Details
-                            </a>
-                        </li>
-                        <li>
-                            <a href="OfcePurpose" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Office Purpose
-                            </a>
-                        </li>
-                        <li>
-                            <a href="ProfileSetting" ng-style="{color:model.lnkreferenceReview==true?'Red':''}">Profile Settings
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <!--<div ui-view="topbar">
+            </div>-->
+            <div ui-view="lazyLoadView">
 
             </div>
-            <div ui-view="lazyLoadView" class="right_col">
-
-            </div>
+            <!--<div ui-view="bottompanel">
+            </div>-->
         </div>
     </div>
     <!-- jQuery -->
@@ -177,40 +90,21 @@
 
     <script src="index.js" type="text/javascript"></script>
     <script src="commonpage.js" type="text/javascript"></script>
-    <!--<script src="directives\dynamicSlideshow.js" type="text/javascript"></script>
-    <script src="directives\photosSlideshowService.js" type="text/javascript"></script>-->
 
     <script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>
     <script src="build/js/custom.js" type="text/javascript"></script>
 
-    <!--<script src="common/controllers/LoaderCtrl.js" type="text/javascript"></script>-->
-    <script src="common/services/errorInterceptor.js" type="text/javascript"></script>
-    <!--<script src="common\services\route.js" type="text/javascript"></script>
-    <script src="directives\testingslide.js" type="text/javascript"></script>-->
-
-    <script src="common/directives/multiSelectDirective.js" type="text/javascript"></script>
+    <!--<script src="common/directives/multiSelectDirective.js" type="text/javascript"></script>-->
     <script src="common/constants/arrayBindConstatns.js" type="text/javascript"></script>
     <script src="common/services/selectBindServices.js" type="text/javascript"></script>
     <script src="common/services/authSvc.js" type="text/javascript"></script>
-    <script src="common/directives/commonFactory.js" type="text/javascript"></script>
+    <script src="common/directives/commondependency.js" type="text/javascript"></script>
     <script src="common/directives/editFooter.js" type="text/javascript"></script>
-    <script src="common/directives/contactDirecrive.js" type="text/javascript"></script>
-    <script src="common/directives/countryDirective.js" type="text/javascript"></script>
-
     <script src="common/model/countryArrayModel.js" type="text/javascript"></script>
-
-    <script src="base/controller/basectrl.js" type="text/javascript"></script>
-    <script src="base/model/baseMdl.js" type="text/javascript"></script>
-    <script src="base/service/baseservice.js" type="text/javascript"></script>
-
-
     <script src="common/model/eduprofArrayModel.js" type="text/javascript"></script>
     <script src="common/model/otherArrayModel.js" type="text/javascript"></script>
     <script src="common/directives/dynamicAlets.js" type="text/javascript"></script>
-
-    <script src="common/directives/pageReviewDirective.js" type="text/javascript"></script>
-
-
+    <script src="common/services/getArrayService.js" type="text/javascript"></script>
 
 
 </body>

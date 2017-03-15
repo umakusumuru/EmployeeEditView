@@ -7,42 +7,31 @@
  * Main App Creation
  */
 
-
-var editviewapp = angular.module('KaakateeyaEmpEdit', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
+var regapp = angular.module('KaakateeyaEmpReg', ['ui.router', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngIdle', 'ngMaterial',
     'ngMessages', 'ngAria', 'ngPassword', 'jcs-autoValidate', 'angularPromiseButtons', 'KaakateeyaRegistration', 'oc.lazyLoad'
 ]);
-editviewapp.apipath = 'http://183.82.0.58:8025/Api/';
-// editviewapp.apipath = 'http://183.82.0.58:8010/Api/';
-editviewapp.typeOfEnv = 'dev';
+regapp.apipath = 'http://183.82.0.58:8025/Api/';
+// regapp.apipath = 'http://183.82.0.58:8010/Api/';
+regapp.env = 'dev';
 
-editviewapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
-editviewapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
+regapp.GlobalImgPath = 'http://d16o2fcjgzj2wp.cloudfront.net/';
+regapp.GlobalImgPathforimage = 'https://s3.ap-south-1.amazonaws.com/kaakateeyaprod/';
 
-editviewapp.prefixPath = 'Images/ProfilePics/';
-editviewapp.S3PhotoPath = '';
-editviewapp.Mnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
-editviewapp.Fnoimage = editviewapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
-editviewapp.accesspathdots = editviewapp.GlobalImgPathforimage + editviewapp.prefixPath;
+regapp.prefixPath = 'Images/ProfilePics/';
+regapp.S3PhotoPath = '';
+regapp.Mnoimage = regapp.GlobalImgPath + "Images/customernoimages/Mnoimage.jpg";
+regapp.Fnoimage = regapp.GlobalImgPath + "Images/customernoimages/Fnoimage.jpg";
+regapp.accesspathdots = regapp.GlobalImgPathforimage + regapp.prefixPath;
 
-editviewapp.BucketName = 'kaakateeyaprod';
-editviewapp.editName = 'edit/:custId/';
+regapp.BucketName = 'kaakateeyaprod';
+regapp.editName = 'edit/:custId/';
 
-editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
+regapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
     var states = [
-        { name: 'editview', url: '', subname: [], abstract: true },
-        { name: 'editview.editEducation', url: '/Education', subname: ['common/directives/datePickerDirective.js'] },
-        { name: 'editview.editManagePhoto', url: '/ManagePhoto', subname: ['common/services/selectBindServices.js'] },
-        { name: 'editview.editParent', url: '/Parent', subname: [] },
-        { name: 'editview.editPartnerpreference', url: '/Partnerpreference', subname: [] },
-        { name: 'editview.editSibbling', url: '/Sibbling', subname: [] },
-        { name: 'editview.editAstro', url: '/Astro', subname: [] },
-        { name: 'editview.editProperty', url: '/Property', subname: [] },
-        { name: 'editview.editRelative', url: '/Relative', subname: [] },
-        { name: 'editview.editReference', url: '/Reference', subname: [] },
-        { name: 'editview.editSpouse', url: '/Spouse', subname: ['common/directives/datePickerDirective.js'] },
-        { name: 'editview.editContact', url: '/Contact', subname: [] },
-        { name: 'editview.editOfcePurpose', url: '/OfcePurpose', subname: [] },
-        { name: 'editview.editProfileSetting', url: '/ProfileSetting', subname: [] }
+        { name: 'reg', url: '', subname: [], abstract: true },
+        { name: 'reg.basicRegistration', url: '/Education', subname: ['common/directives/datePickerDirective.js'] },
+        { name: 'reg.secondaryRegistration', url: '/secondaryRegistrationurl', subname: ['common/directives/datePickerDirective.js'] }
+
     ];
     $ocLazyLoadProvider.config({
         debug: true
@@ -52,11 +41,17 @@ editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     _.each(states, function(item) {
 
         var innerView = {};
-        var edititem = item.name.slice(9);
+        var regitem = item.name.slice(4);
         innerView = {
+            "topbar@": {
+                templateUrl: "templates/topheader.html"
+            },
             "lazyLoadView@": {
-                templateUrl: 'app/' + edititem + '/index.html',
-                controller: edititem + 'Ctrl as page'
+                templateUrl: 'app/' + regitem + '/index.html',
+                controller: regitem + 'Ctrl as page'
+            },
+            "bottompanel@": {
+                templateUrl: "templates/footer.html"
             }
         };
 
@@ -66,12 +61,11 @@ editviewapp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
             resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
                 loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
                     // you can lazy load files for an existing module
-                    var edit = item.name.slice(9);
-                    if (editviewapp.typeOfEnv === 'dev') {
-                        return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);
-
+                    // var edit = item.name.slice(9);
+                    if (regapp.env === 'dev') {
+                        return $ocLazyLoad.load(['app/' + regitem + '/controller/' + regitem + 'ctrl.js', 'app/' + regitem + '/model/' + regitem + 'Mdl.js', 'app/' + regitem + '/service/' + regitem + 'service.js', item.subname]);
                     } else {
-                        return $ocLazyLoad.load(['app/' + edit + '/script.min.js', item.subname]);
+                        return $ocLazyLoad.load(['app/' + regitem + '/src/script.min.js', item.subname]);
                     }
 
                     // return $ocLazyLoad.load(['app/' + edit + '/controller/' + edit + 'ctrl.js', 'app/' + edit + '/model/' + edit + 'Mdl.js', 'app/' + edit + '/service/' + edit + 'service.js', item.subname]);

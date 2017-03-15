@@ -11,7 +11,7 @@
      }
      angular
          .module('KaakateeyaEmpReg')
-         .controller('parametervalueCtrl', controller)
+         .controller('secondaryRegistrationCtrl', controller)
 
      controller.$inject = ['$location'];
  })(angular);

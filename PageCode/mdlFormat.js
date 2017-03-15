@@ -13,7 +13,7 @@
     }
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .factory('parametervalueModel', factory)
 
     factory.$inject = ['$http'];

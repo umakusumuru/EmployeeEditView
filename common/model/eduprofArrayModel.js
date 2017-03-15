@@ -37,9 +37,9 @@
     }
 
     angular
-        .module('KaakateeyaEmpEdit')
+        .module('KaakateeyaEmpReg')
         .factory('eduprofArrayModel', factory)
 
-    factory.$inject = ['$http', 'SelectBindService'];
+    factory.$inject = ['$http', 'SelectBindServicereg'];
 
 })(angular);

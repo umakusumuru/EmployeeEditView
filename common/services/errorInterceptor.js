@@ -20,7 +20,7 @@
             }
         };
     }]);
-    angular.module('KaakateeyaEmpEdit').config(['$httpProvider', function($httpProvider) {
+    angular.module('KaakateeyaEmpReg').config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('errorInterceptor');
     }]);
 }(window.editviewapp));

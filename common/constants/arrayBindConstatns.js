@@ -1,8 +1,8 @@
 (function() {
     'use strict';
     angular
-        .module('KaakateeyaEmpEdit')
-        .constant('arrayConstantsEdit', {
+        .module('KaakateeyaEmpReg')
+        .constant('arrayConstantsreg', {
             'MaritalStatus': [
                 { "label": "--Select--", "title": "--Select--", "value": "" },
                 { "label": "Unmarried", "title": "Unmarried", "value": 43 },

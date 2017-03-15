@@ -6,6 +6,21 @@ var fs = require('fs');
 var packageJson = JSON.parse(fs.readFileSync('./package.json'));
 var plugins = packageJson.buildSettings.plugins;
 var css = packageJson.buildSettings.css;
+var folder = {
+    'app/editAstro/src/script.min.js': 'app/editAstro/**/*.js',
+    'app/editContact/src/script.min.js': 'app/editContact/**/*.js',
+    'app/editEducation/src/script.min.js': 'app/editEducation/**/*.js',
+    'app/editManagePhoto/src/script.min.js': 'app/editManagePhoto/**/*.js',
+    'app/editOfcePurpose/src/script.min.js': 'app/editOfcePurpose/**/*.js',
+    'app/editParent/src/script.min.js': 'app/editParent/**/*.js',
+    'app/editPartnerpreference/src/script.min.js': 'app/editPartnerpreference/**/*.js',
+    'app/editProfileSetting/src/script.min.js': 'app/editProfileSetting/**/*.js',
+    'app/editProperty/src/script.min.js': 'app/editProperty/**/*.js',
+    'app/editReference/src/script.min.js': 'app/editReference/**/*.js',
+    'app/editRelative/src/script.min.js': 'app/editRelative/**/*.js',
+    'app/editSibbling/src/script.min.js': 'app/editSibbling/**/*.js',
+    'app/editSpouse/src/script.min.js': 'app/editSpouse/**/*.js'
+};
 module.exports = function(grunt) {
     console.log(plugins);
     // ===========================================================================
@@ -33,10 +48,7 @@ module.exports = function(grunt) {
                 mangle: false
             },
             build: {
-                files: {
-
-                    'dist/js/main.min.js': ['dist/src/main.js']
-                }
+                files: folder
             }
         },
         cssmin: {
@@ -159,32 +171,32 @@ module.exports = function(grunt) {
         mkdir: {
             all: {
                 options: {
-                    create: [grunt.option('option-path')]
+                    create: ['app/' + grunt.option('option-path')]
                 },
             },
         },
         "file-creator": {
             "option": {
                 files: [{
-                        file: ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
+                        file: 'app/' + ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
+                        file: 'app/' + ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        file: 'app/' + ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
                         method: function(fs, fd, done) {
                             done();
                         }
                     },
                     {
-                        file: ((grunt.option('option-path') + '/') + ("index.html")),
+                        file: 'app/' + ((grunt.option('option-path') + '/') + ("index.html")),
                         method: function(fs, fd, done) {
                             done();
                         }
@@ -203,19 +215,19 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                         src: './PageCode/ctrlFormat.js',
-                        dest: ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
+                        dest: 'app/' + ((grunt.option('option-path') + '/controller/') + (grunt.option('option-path') + "ctrl.js"))
                     },
                     {
                         src: './PageCode/mdlFormat.js',
-                        dest: ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
+                        dest: 'app/' + ((grunt.option('option-path') + '/model/') + (grunt.option('option-path') + "Mdl.js"))
                     },
                     {
                         src: './PageCode/serviceFormat.js',
-                        dest: ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
+                        dest: 'app/' + ((grunt.option('option-path') + '/service/') + (grunt.option('option-path') + "service.js")),
                     },
                     {
                         src: './PageCode/viewFormat.html',
-                        dest: ((grunt.option('option-path') + '/') + ("index.html"))
+                        dest: 'app/' + ((grunt.option('option-path') + '/') + ("index.html"))
                     }
                 ],
                 options: {
@@ -225,6 +237,17 @@ module.exports = function(grunt) {
                     }]
                 }
             }
+        },
+        folder_list: {
+            options: {
+                // Default options, you dont need these they are just to highlight the options available. 
+                files: false,
+                folders: true
+            },
+            files: {
+                src: ['app/**'],
+                dest: 'tmp/fixtures.json',
+            },
         }
 
     });
@@ -255,5 +278,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-file-creator');
     grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks('grunt-folder-list');
 
 };
